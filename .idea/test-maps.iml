@@ -8,5 +8,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="leaflet" level="application" />
+    <orderEntry type="library" name="leaflet.draw" level="application" />
+    <orderEntry type="library" name="Polyline.encoded" level="application" />
+    <orderEntry type="library" name="leaflet.vectorgrid" level="application" />
   </component>
 </module>
