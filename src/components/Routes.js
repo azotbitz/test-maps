@@ -41,12 +41,20 @@ const Routes = () => {
 
 
     const dataWindow = useSelector(data);
-    const route = [dataWindow[0][0].routes[0].geometry.coordinates]
-    const routeSecond = [dataWindow[0][1].routes[0].geometry.coordinates]
-    const route2 = [dataWindow[1][0].routes[0].geometry.coordinates]
-    const route2Second = [dataWindow[1][1].routes[0].geometry.coordinates]
-    const route3 = [dataWindow[2][0].routes[0].geometry.coordinates]
-    const route3Second = [dataWindow[2][1].routes[0].geometry.coordinates]
+    const route = [dataWindow[0][0].matchings[0].geometry.coordinates][0]
+    const routeSecond = [dataWindow[0][1].matchings[0].geometry.coordinates][0]
+    const route2 = [dataWindow[1][0].matchings[0].geometry.coordinates]
+    const route2Second = [dataWindow[1][1].matchings[0].geometry.coordinates]
+    const route3 = [dataWindow[2][0].matchings[0].geometry.coordinates]
+    const route3Second = [dataWindow[2][1].matchings[0].geometry.coordinates]
+    const revRoute = route.map(point => point.reverse())
+    const revRouteSecond = routeSecond.map(point => point.reverse())
+    const revRoute2 = route2[0].map(point => point.reverse())
+    const revRoute2Second = route2Second[0].map(point => point.reverse())
+    const revRoute3 = route3[0].map(point => point.reverse())
+    const revRoute3Second = route3Second[0].map(point => point.reverse())
+
+
     const map = useMap();
 
     const [selectRoute, setSelectRoute] = useState(route)
@@ -58,21 +66,18 @@ const Routes = () => {
 
 
     useEffect(() => {
-
         switch (status.toString()) {
             case 'route1':
-                setSelectRoute(route)
-                setSelectRouteSecond(routeSecond)
-
+                setSelectRoute(revRoute)
+                setSelectRouteSecond(revRouteSecond)
                 break
             case 'route2':
-                setSelectRoute(route2)
-                setSelectRouteSecond(route2Second)
-
+                setSelectRoute(revRoute2)
+                setSelectRouteSecond(revRoute2Second)
                 break
             case 'route3':
-                setSelectRoute(route3)
-                setSelectRouteSecond(route3Second)
+                setSelectRoute(revRoute3)
+                setSelectRouteSecond(revRoute3Second)
                 break
             default: return null
         }
@@ -96,16 +101,16 @@ const Routes = () => {
             lineCap: "square",
             renderer: myRenderer }).bindPopup(status)
 
-
-        const markerStart = Leaflet.marker([line.getLatLngs()[0][0][0].lat, line.getLatLngs()[0][0][0].lng], {
+            console.log(line.getLatLngs()[0][0])
+        const markerStart = Leaflet.marker([line.getLatLngs()[0][0].lat, line.getLatLngs()[0][0].lng], {
             icon: greenIcon
         }).bindPopup('Старт')
 
-        const markerStop = Leaflet.marker([line2.getLatLngs()[0][0][0].lat, line2.getLatLngs()[0][0][0].lng], {
+        const markerStop = Leaflet.marker([line2.getLatLngs()[0][0].lat, line2.getLatLngs()[0][0].lng], {
             icon: yellowIcon
         }).bindPopup('Стоп')
 
-        const markerFinish = Leaflet.marker([line2.getLatLngs()[0][0].slice(-1)[0].lat, line2.getLatLngs()[0][0].slice(-1)[0].lng], {
+        const markerFinish = Leaflet.marker([line2.getLatLngs()[0].slice(-1)[0].lat, line2.getLatLngs()[0].slice(-1)[0].lng], {
             icon: redIcon
         }).bindPopup('Финиш')
 
@@ -115,7 +120,7 @@ const Routes = () => {
 
         setTimeout(() => {
             layer.remove()
-        }, 1500)
+        }, 5500)
 
     },[status])
     return null;

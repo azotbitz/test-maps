@@ -10,32 +10,32 @@ export function* fetchRouteAsync(coordinates) {
     try {
         yield put(requestRoute());
         const data = yield call(() => {
-                return fetch(`http://router.project-osrm.org/route/v1/foot/${coordinates.data[0]}?geometries=geojson&overview=simplified`)
+                return fetch(`http://router.project-osrm.org/match/v1/driving/${coordinates.data[0]}?geometries=geojson&overview=simplified`)
                     .then(res => res.json())
             }
         );
         const dataSecond = yield call(() => {
-                return fetch(`http://router.project-osrm.org/route/v1/foot/${coordinates.data[1]}?geometries=geojson&overview=simplified`)
+                return fetch(`http://router.project-osrm.org/match/v1/driving/${coordinates.data[1]}?geometries=geojson&overview=simplified`)
                     .then(res => res.json())
             }
         );
         const data2 = yield call(() => {
-                return fetch(`http://router.project-osrm.org/route/v1/foot/${coordinates.data[2]}?geometries=geojson&overview=simplified`)
+                return fetch(`http://router.project-osrm.org/match/v1/driving/${coordinates.data[2]}?geometries=geojson&overview=simplified`)
                     .then(res => res.json())
             }
         );
         const data2Second = yield call(() => {
-                return fetch(`http://router.project-osrm.org/route/v1/foot/${coordinates.data[3]}?geometries=geojson&overview=simplified`)
+                return fetch(`http://router.project-osrm.org/match/v1/driving/${coordinates.data[3]}?geometries=geojson&overview=simplified`)
                     .then(res => res.json())
             }
         );
         const data3 = yield call(() => {
-                return fetch(`http://router.project-osrm.org/route/v1/foot/${coordinates.data[4]}?geometries=geojson&overview=simplified`)
+                return fetch(`http://router.project-osrm.org/match/v1/driving/${coordinates.data[4]}?geometries=geojson&overview=simplified`)
                     .then(res => res.json())
             }
         );
         const data3Second = yield call(() => {
-                return fetch(`http://router.project-osrm.org/route/v1/foot/${coordinates.data[5]}?geometries=geojson&overview=simplified`)
+                return fetch(`http://router.project-osrm.org/match/v1/driving/${coordinates.data[5]}?geometries=geojson&overview=simplified`)
                     .then(res => res.json())
             }
         );

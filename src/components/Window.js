@@ -19,19 +19,21 @@ const Window = () => {
     const err = useSelector(error);
     const dataWindow = useSelector(data);
 
-    const point1 = [60.024642, 30.645860];
-    const point2 = [59.82934196, 30.42423701];
-    const point3 = [59.940070, 30.328633];
-    const point4 = [58.82761295, 30.41705607];
+    const point1 = [13.682632, 47.393753];
+    const point2 = [13.6849281, 47.3935649];
+    const point3 = [13.388860, 52.517037];
+    const point4 = [13.397634, 52.529407];
+    const point5 = [13.428555, 52.523219];
+    const point6 = [13.683632, 47.394653];
     const routes = [
+        `${point3};${point4}`,
+        `${point4};${point5}`,
+
         `${point1};${point2}`,
-        `${point2};${point3}`,
+        `${point2};${point6}`,
 
-        `${point2};${point4}`,
-        `${point4};${point1}`,
-
-        `${point3};${point1}`,
-        `${point1};${point4}`
+        `${point4};${point3}`,
+        `${point3};${point5}`
     ];
 
 
@@ -52,7 +54,7 @@ const Window = () => {
     }
 
     return (
-        <Layout>
+        <Layout style={{height: '100vh'}}>
             <Sider
                 breakpoint="lg"
                 collapsedWidth="0"
@@ -95,7 +97,7 @@ const Window = () => {
                     <div
                         style={{
                             padding: 24,
-                            minHeight: 360,
+                            minHeight: 660,
                             background: colorBgContainer,
                         }}
                     >
